@@ -21,7 +21,7 @@ class UrbanDictionary(scrapy.Spider):
         # links = response.css("li.word a").css('::attr(href)').getall()
         for item in response.css("li.word"):
             word = item.css('a::text').get()
-            short_description = requests.get(f'https://api.urbandictionary.com/v0/tooltip?term={word}').json()['string'].replace('</b>',' ').replace('<b>','').replace('\n','').replace('\r','')
+            short_description = requests.get('https://api.urbandictionary.com/v0/tooltip?term={word}').json()['string'].replace('</b>',' ').replace('<b>','').replace('\n','').replace('\r','')
             links.append({
                 'word' : word ,
                 'short_desc':  short_description ,
